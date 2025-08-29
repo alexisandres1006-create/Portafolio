@@ -17,6 +17,10 @@ nav {
 }
 .logo {
   color: white;
+  display: flex;
+  justify-content: flex-start; 
+  padding-left: 20px;          
+
   font-family: Arial, sans-serif;
 }
 nav ul {
@@ -44,6 +48,7 @@ nav a:hover {
 .hero h2 {
   font-family: Arial, sans-serif;
   font-size: 2rem;
+  
 }
 .hero span {
   color: #007acc;
@@ -80,4 +85,23 @@ footer {
 footer a {
   color: #007acc;
   text-decoration: none;
+}
+.proyecto {
+  width: 250px;     
+  height: 350px;    
+  object-fit: cover; 
+  margin: 10px;
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+}
+
+.descripcion {
+  
+   font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+  color: #444; 
 }
