@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería 3D</title>
+  <!-- model-viewer para ver modelos -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style_Modelado_3D.css">
+</head>
+</head>
+<link rel="icon" href="../favicon.png" type="image/png">
+<head>
+<body>
+
+  <header>
+    <h1> Mis Modelos 3D </h1>
+    <p>Explora, gira y descubre mis creaciones en 3D</p>
+  </header>
+
+  <main class="galeria">
+    <!-- Modelo 1 -->
+    <div class="card">
+      <h2>Cinnamon roll</h2>
+      <model-viewer src="modelos/cinanmorollito.glb"
+                    alt="Cinamorollito"
+                    auto-rotate
+                    camera-controls>
+      </model-viewer>
+    </div>
+
+    <!-- Modelo 2 (Sala en modo videojuego con Three.js) -->
+    <div class="card">
+      <h3>Sala 3D </h3>
+            <model-viewer src="Modelos/Salitapequeña.glb"
+                    alt="Otro modelo"
+                    auto-rotate
+                    camera-controls>
+      </model-viewer>
+     
+    </div>
+
+    <!-- Modelo 3 -->
+    <div class="card">
+      <h2>Celular  </h2>
+      <model-viewer src="Modelos_3D\Modelos\oModelo.glb"
+                    alt="Tercer modelo"
+                    auto-rotate
+                    camera-controls>
+      </model-viewer>
+    </div>
+  </main>
+
+  <footer>
+    <a href="../index.html" class="back-link">⬅ Volver al Portafolio</a>
+  </footer>
+
+
+</body>
+</html>

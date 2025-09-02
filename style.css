@@ -7,7 +7,7 @@ body {
 
 /* Encabezado */
 header {
-  background: #0058cc;
+  background: linear-gradient(135deg, #07abb1 0%, #2575fc 100%);
   padding: 1rem 2rem;
 }
 nav {
