@@ -19,11 +19,14 @@ const createScene = () => {
     camera.position.y = 5;
 
     // Orientación en móviles
+     // 📱 Orientación en móviles
     if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", function (evt) {
+        window.addEventListener("deviceorientation", (evt) => {
             if (evt.alpha !== null && evt.beta !== null && evt.gamma !== null) {
-                camera.rotation.y = BABYLON.Tools.ToRadians(evt.alpha);
-                camera.rotation.x = BABYLON.Tools.ToRadians(evt.beta - 90);
+                // Rotaciones del móvil → cámara
+                camera.rotation.y = BABYLON.Tools.ToRadians(evt.alpha);      // giro horizontal
+                camera.rotation.x = BABYLON.Tools.ToRadians(evt.beta - 90); // inclinación
+                camera.rotation.z = BABYLON.Tools.ToRadians(evt.gamma);     // rotación lateral
             }
         }, true);
     }
