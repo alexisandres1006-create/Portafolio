@@ -91,6 +91,17 @@ const createScene = () => {
             mesh.checkCollisions = true;
             mesh.isPickable = true;
         });
+/* identificador de clicks xd*/
+scene.onPointerObservable.add((pointerInfo) => {
+  if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERPICK) {
+    const pickResult = pointerInfo.pickInfo;
+    if (pickResult.hit && pickResult.pickedMesh) {
+      const meshName = pickResult.pickedMesh.name;
+      console.log("👉 Click en:", meshName);
+
+    }
+  }
+});
 
         // Click sobre objetos
         scene.onPointerObservable.add((pointerInfo) => {
