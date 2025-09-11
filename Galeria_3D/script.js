@@ -4,6 +4,13 @@ const engine = new BABYLON.Engine(canvas, true);
 const createScene = () => {
     const scene = new BABYLON.Scene(engine);
 
+    // Desactiva el loading que es el por defecto :D
+    engine.loadingScreen = new BABYLON.DefaultLoadingScreen(document.getElementById("renderCanvas"));
+    engine.loadingScreen.displayLoadingUI = function() {}; // desactiva mostrar
+    engine.loadingScreen.hideLoadingUI = function() {};    // desactiva ocultar
+
+
+//----------------------------------lo q tiene q ver mas con la parte visual escenario---------------------------//
     // Gravedad y colisiones
     scene.gravity = new BABYLON.Vector3(0, -0.5, 0);
     scene.collisionsEnabled = true;
@@ -63,24 +70,49 @@ const createScene = () => {
     ground.checkCollisions = true;
     ground.isVisible = false;
 
-    // Diccionario de obras
+    //------------------------------------obras---------------------------------------------------------//
     const obras = {
         "Box032": {
             titulo: "Obra: Doritos",
-            desc: "Fue parte del curso de semiótica",
-            img: "poster.jpeg"
+            desc: "Proyecto que trataba sobre el lenguaje visual, hablando sobre hacer pensar al emisor final y hacer que el producto le llegue a su mente.",
+            img: "imagenes/doritos.png"
         },
         "Box056": {
-            titulo: "Obra: Otra obra",
-            desc: "Así explico xd",
-            img: "./imgs/otra.png"
+            titulo: "Obra: Moral Dividida",
+            desc: "Empeze organizando mis elementos, ajuste luces e ilumiacion para que se centre mejor en los protagonistas y pensando en una idea para esta obra decidi tomarlo como un poster para un pelicula.",
+            img: "imagenes/marvel.jpeg"
         },
         "Box076": {
             titulo: "Obra: Destino final",
-            desc: "queria hacer un poster de terror",
-            img: "poster2.png"
+            desc: "Me fascina esta saga de peliculas y queria hacer un recuento de todos sus films, dando un enfoque a su ojos por que de alli provienen sus visiones, queria jugar con la estetica tenebrosa pero funcional en cuesiton de jerarquia visual.",
+            img: "imagenes/poster2.png"
+        },
+        "Box092": {
+            titulo: "Obra: Mandala Creativo",
+            desc: "Proyecto que nos enseño la creatividad y leyes de gestalt, sobre todo paciencia. Empeze Planeando la idea para luego con regla y lapiz delinear todo el dibujo, después lo repase con un estilografo.",
+            img: "imagenes/mandalaa.jpeg"
+        },
+        "Box098": {
+            titulo: "Obra: Eterno Primavera",
+            desc: "Todo pintando con colores y tecnicas de degradado para que tenga un matiz atractivo, el proyecto me enseño sobre el arte nouveau y a liberar la creatividad e imaginación.",
+            img: "imagenes/arte.jpg"
+    
+        },
+        "Box099": {
+            titulo: "Obra: Cuento harry potter",
+            desc: "Planeamos la tematica y empeze con varios bocetos, luego usando pinceles, filtros, capas fui pintando en una tableta digital. Este proyecto me enseño mucho acerca de la ilustración digital en piezas graficas y la creatividad.",
+            img: "imagenes/harry_proces" 
+        },
+        "Box074": {
+            titulo: "Obra: Vitral de paz",
+            desc: "Primero lo que hicimos fue seleccionar una idea, plasmarla con lapiz, hacer el troquelado manualmente con cutter y cortamos pieza por pieza cada color del vitrial y pegamos. Este proyecto me enseño mucho sobre el detalle y la planificación.",
+            img: "imagenes/vitrial.jpg" 
+        },
+        "Box144": {
+            titulo: "Obra: Grises en pintura",
+            desc: "Primero planificamos la imagen, luego dividimos por sectores donde la saturación de iluminación se visualizaba, dividio por 9 tonos de grises y lo pintamos con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
+            img: "imagenes/grises.jpg" 
         }
-        
     };
 
     // Cargar modelo
@@ -91,7 +123,7 @@ const createScene = () => {
             mesh.checkCollisions = true;
             mesh.isPickable = true;
         });
-/* identificador de clicks xd*/
+/* --------------------------identificador de clicks xd---------------------------------------*/
 scene.onPointerObservable.add((pointerInfo) => {
   if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERPICK) {
     const pickResult = pointerInfo.pickInfo;
@@ -103,7 +135,7 @@ scene.onPointerObservable.add((pointerInfo) => {
   }
 });
 
-        // Click sobre objetos
+// Click sobre objetos-------------------------------
         scene.onPointerObservable.add((pointerInfo) => {
             if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERPICK) {
                 const pickResult = pointerInfo.pickInfo;
@@ -131,7 +163,7 @@ window.addEventListener("resize", () => {
     engine.resize();
 });
 
-// --- Función popup ---
+// --- Función popup ------------------------------------------//
 function showPopup(title, desc, img = "") {
     document.getElementById("popupTitle").textContent = title;
     document.getElementById("popupDesc").textContent = desc;
@@ -149,3 +181,23 @@ function showPopup(title, desc, img = "") {
 document.getElementById("closePopup").onclick = () => {
     document.getElementById("popup").style.display = "none";
 };
+
+
+//sirve para darle ese toque de cielo al techo (funciona como un agregador de textura en vez de la textura modara de babylon)
+scene.createDefaultSkybox(scene.environmentTexture, true, 1000);
+
+//---------------funciones de pantalla de carga:3-------------------------------------------------------------------------------------//
+
+// esto muestra mi fondo
+document.getElementById("customLoading").style.display = "flex";
+
+// esto lo oculta con fade-out cuando la escena ya está lista
+scene.executeWhenReady(() => {
+  const loader = document.getElementById("customLoading");
+  loader.classList.add("fade-out");
+
+  // después de 800ms (tiempo de la transición CSS), lo quitamos
+  setTimeout(() => {
+    loader.style.display = "none";
+  }, 800);
+});
