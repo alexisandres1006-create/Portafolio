@@ -24,26 +24,10 @@ const createScene = () => {
     camera.ellipsoid = new BABYLON.Vector3(1, 4, 3);
     camera.ellipsoidOffset = new BABYLON.Vector3(0, -3, 0);
     camera.position.y = 5;
+    camera.inputs.addTouch();
+camera.inputs.attached.touch.touchAngularSensibility = 1000; // Ajusta la sensibilidad
+camera.inputs.attached.touch.touchMoveSensibility = 1000;     // Opcional, controla la velocidad del movimiento
 
-    // --- Detectar si es móvil y activar giroscopio ---
-if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    if (window.DeviceOrientationEvent) {
-         let lastAlpha = 0, lastBeta = 0, lastGamma = 0;
-    const smoothing = 0.05;
-    
-    // menor = más lento/suave
-        window.addEventListener("deviceorientation", (evt) => {
-            if (evt.alpha !== null && evt.beta !== null && evt.gamma !== null) {
-
-
-                // Apuntar cámara según la orientación del móvil
-                camera.rotation.y = BABYLON.Tools.ToRadians(evt.alpha);      // giro horizontal
-                camera.rotation.x = BABYLON.Tools.ToRadians(evt.beta - 90); // inclinación adelante/atrás
-                camera.rotation.z = BABYLON.Tools.ToRadians(evt.gamma);     // rotación lateral
-            }
-        }, true);
-    }
-}
 ///////////////////////////////////////////// IMPORTANTE tiene que ver con el joystick del movil///////////////////////////////////////////
 // Mostrar joystick solo en móviles
 if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
