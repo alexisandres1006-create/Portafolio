@@ -125,3 +125,29 @@ body {
   height: auto;
 }
 
+/* ----------------------------- joystick ------------------/* 
+
+/* Contenedor del joystick */
+#joystickContainer {
+  position: absolute;
+  top: 1200px;
+  left: 100px;
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 70%;
+  touch-action: none;
+  z-index: 10;
+}
+
+/* Botón del joystick */
+#joystick {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  touch-action: none;
+}

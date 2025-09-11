@@ -16,7 +16,7 @@ const createScene = () => {
     scene.collisionsEnabled = true;
 
     // Cámara primera persona
-    const camera = new BABYLON.UniversalCamera("camera", new BABYLON.Vector3(2, 3, 0), scene);
+    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(2, 3, 0), scene);
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
     camera.applyGravity = true;
@@ -25,18 +25,85 @@ const createScene = () => {
     camera.ellipsoidOffset = new BABYLON.Vector3(0, -3, 0);
     camera.position.y = 5;
 
-    // Orientación en móviles
-     // 📱 Orientación en móviles
+    // --- Detectar si es móvil y activar giroscopio ---
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     if (window.DeviceOrientationEvent) {
+         let lastAlpha = 0, lastBeta = 0, lastGamma = 0;
+    const smoothing = 0.05;
+    
+    // menor = más lento/suave
         window.addEventListener("deviceorientation", (evt) => {
             if (evt.alpha !== null && evt.beta !== null && evt.gamma !== null) {
-                // Rotaciones del móvil → cámara
+
+
+                // Apuntar cámara según la orientación del móvil
                 camera.rotation.y = BABYLON.Tools.ToRadians(evt.alpha);      // giro horizontal
-                camera.rotation.x = BABYLON.Tools.ToRadians(evt.beta - 90); // inclinación
+                camera.rotation.x = BABYLON.Tools.ToRadians(evt.beta - 90); // inclinación adelante/atrás
                 camera.rotation.z = BABYLON.Tools.ToRadians(evt.gamma);     // rotación lateral
             }
         }, true);
     }
+}
+///////////////////////////////////////////// IMPORTANTE tiene que ver con el joystick del movil///////////////////////////////////////////
+// Mostrar joystick solo en móviles
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.getElementById("joystickContainer").style.display = "block";
+
+    const joystick = document.getElementById("joystick");
+    const container = document.getElementById("joystickContainer");
+
+    let dragging = false;
+    let startX, startY;
+
+    // Guardar el movimiento del joystick
+    let moveX = 0, moveY = 0;
+
+    joystick.addEventListener("touchstart", (e) => {
+        dragging = true;
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+    });
+
+    joystick.addEventListener("touchmove", (e) => {
+        if (!dragging) return;
+        const touch = e.touches[0];
+        let dx = touch.clientX - startX;
+        let dy = touch.clientY - startY;
+
+        // Limitar dentro del radio
+        const distance = Math.min(Math.sqrt(dx*dx + dy*dy), 40);
+        const angle = Math.atan2(dy, dx);
+        const offsetX = Math.cos(angle) * distance;
+        const offsetY = Math.sin(angle) * distance;
+
+        joystick.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+
+        // Guardar normalizado (-1 a 1)
+        moveX = offsetX / 40;
+        moveY = offsetY / 40;
+    });
+
+    joystick.addEventListener("touchend", () => {
+        dragging = false;
+        joystick.style.transform = "translate(0,0)";
+        moveX = 0;
+        moveY = 0;
+    });
+
+scene.onBeforeRenderObservable.add(() => {
+    const forward = camera.getDirection(BABYLON.Axis.Z);
+    const right = camera.getDirection(BABYLON.Axis.X);
+
+    // Mover cámara respetando colisiones en UniversalCamera
+    camera.cameraDirection.addInPlace(
+        forward.scale(-moveY * 0.05).add(right.scale(moveX * 0.05))
+    );
+});
+        
+    
+}
+////////////////////--------------------------------------------------------------------------------////////////////////////////////////////
 
     // Teclas WASD
     camera.keysUp.push(87);

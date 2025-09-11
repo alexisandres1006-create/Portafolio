@@ -4,38 +4,40 @@
   <meta charset="UTF-8">
   <title>Galería 3D</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <!-- BabylonJS -->
   <script src="https://cdn.babylonjs.com/babylon.js"></script>
   <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-  <link rel="icon" href="../favicon.png" type="image/png">
+  <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
 </head>
+
 <body>
   
+  <!-- Joystick móviles -->
+<div id="joystickContainer" style="display:none;">
+  <div id="joystick"></div>
+</div>
+
+  <!-- Canvas 3D -->
   <canvas id="renderCanvas"></canvas>
 
-  <!-- cuadro de descripcion o esa ventana emergente esa xdd -->
+  <!-- Ventana emergente (descripción de obra) -->
   <div id="popup" class="popup">
     <div class="popup-content">
-        <h2 id="popupTitle"></h2>
+      <h2 id="popupTitle"></h2>
       <img id="popupImg" src="" alt="Vista de la obra">
-     <p id="popupDesc"></p>
+      <p id="popupDesc"></p>
       <span id="closePopup" class="close">×</span>
     </div>
-</div>
-
-<canvas id="renderCanvas"></canvas>
   </div>
-  </body>
-   <!-- pantallita de carga :D-->
- <div id="customLoading">
-  <img src="../logo1.png" alt="Logo" />
-</div>
-<canvas id="renderCanvas"></canvas>
+
+  <!-- Pantalla de carga -->
+  <div id="customLoading">
+    <img src="../logo1.png" alt="Logo" />
+  </div>
 
   <!-- Script principal -->
   <script src="script.js"></script>
 </body>
-   
 </html>
-
-</html>
-
