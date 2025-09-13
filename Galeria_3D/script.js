@@ -239,10 +239,10 @@ scene.createDefaultSkybox(scene.environmentTexture, true, 1000);
 
 //---------------funciones de pantalla de carga:3-------------------------------------------------------------------------------------//
 
-// esto muestra mi fondo
+// Mostrar el loader con la intro
 document.getElementById("customLoading").style.display = "flex";
 
-// esto lo oculta con fade-out cuando la escena ya está lista
+// Ocultar cuando la escena ya esté lista
 scene.executeWhenReady(() => {
   const loader = document.getElementById("customLoading");
   loader.classList.add("fade-out");
