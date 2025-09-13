@@ -16,17 +16,16 @@ const createScene = () => {
     scene.collisionsEnabled = true;
 
     // Cámara primera persona
-    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(2, 3, 0), scene);
+    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(2, 8, 0), scene);
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
     camera.applyGravity = true;
     camera.speed = 0.2;
-    camera.ellipsoid = new BABYLON.Vector3(1, 4, 3);
-    camera.ellipsoidOffset = new BABYLON.Vector3(0, -3, 0);
-    camera.position.y = 5;
+    camera.ellipsoid = new BABYLON.Vector3(1, 8, 3);
+    camera.ellipsoidOffset = new BABYLON.Vector3(0, 8, 0);
+    camera.position.y = 8;
     camera.inputs.addTouch();
-camera.inputs.attached.touch.touchAngularSensibility = 1000; // Ajusta la sensibilidad
-camera.inputs.attached.touch.touchMoveSensibility = 1000;     // Opcional, controla la velocidad del movimiento
+camera.inputs.attached.touch.touchMoveSensibility = 800;
 
 ///////////////////////////////////////////// IMPORTANTE tiene que ver con el joystick del movil///////////////////////////////////////////
 // Mostrar joystick solo en móviles
@@ -250,5 +249,5 @@ scene.executeWhenReady(() => {
   // después de 800ms (tiempo de la transición CSS), lo quitamos
   setTimeout(() => {
     loader.style.display = "none";
-  }, 800);
+  }, 500);
 });
