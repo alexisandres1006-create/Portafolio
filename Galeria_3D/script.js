@@ -251,10 +251,6 @@ scene.executeWhenReady(() => {
   const loader = document.getElementById("customLoading");
   loader.classList.add("fade-out");
 
-  // después de 800ms (tiempo de la transición CSS), lo quitamos
-  setTimeout(() => {
-    loader.style.display = "none";
-  }, 500);
 });
 
 loader.load("funko_box.glb", function (gltf) {
