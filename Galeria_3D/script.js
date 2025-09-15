@@ -162,6 +162,11 @@ scene.onBeforeRenderObservable.add(() => {
             titulo: "Obra: Grises en pintura",
             desc: "Primero planificamos la imagen, luego dividimos por sectores donde la saturación de iluminación se visualizaba, dividio por 9 tonos de grises y lo pintamos con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
             img: "imagenes/grises.jpg" 
+        },
+        "Box077": {
+            titulo: "Obra: Grises en pintura",
+            desc: "Primero planificamos la imagen, luego dividimos por sectores donde la saturación de iluminación se visualizaba, dividio por 9 tonos de grises y lo pintamos con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
+            img: "imagenes/grises.jpg" 
         }
     };
 
@@ -250,4 +255,25 @@ scene.executeWhenReady(() => {
   setTimeout(() => {
     loader.style.display = "none";
   }, 500);
+});
+
+loader.load("funko_box.glb", function (gltf) {
+  gltf.scene.traverse((child) => {
+    if (child.isMesh && child.material) {
+      
+      // --- Ventana de la caja (vidrio/plástico) ---
+      if (child.material.name === "Vidrio_Funko") {
+        child.material.transparent = true;   
+        child.material.opacity = 0.25;        
+        child.material.depthWrite = false;    
+        child.material.roughness = 0.05;      // casi espejo
+        child.material.metalness = 2;         // Refleja el HDRI
+        child.material.envMapIntensity = 3;   // Reflejo del entorno
+        mesh.material.alpha = 0.3;
+mesh.material.transparencyMode = BABYLON.Material.MATERIAL_ALPHABLEND;
+         }
+        }
+  });
+
+  scene.add(gltf.scene);
 });
