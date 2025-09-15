@@ -171,8 +171,8 @@ scene.onBeforeRenderObservable.add(() => {
     };
 
     // Cargar modelo
-    BABYLON.SceneLoader.Append("models/", "galeria.glb", scene, function () {
-        console.log("✅ Modelo cargado: galeria.glb");
+    BABYLON.SceneLoader.Append("models/", "galeria-v2.glb", scene, function () {
+        console.log("✅ Modelo cargado: galeria.glb-v2");
 
         scene.meshes.forEach(mesh => {
             mesh.checkCollisions = true;
@@ -250,8 +250,10 @@ document.getElementById("customLoading").style.display = "flex";
 scene.executeWhenReady(() => {
   const loader = document.getElementById("customLoading");
   loader.classList.add("fade-out");
-
 });
+setTimeout(() => {
+  loader.style.display = "none";
+}, 500);
 
 loader.load("funko_box.glb", function (gltf) {
   gltf.scene.traverse((child) => {
