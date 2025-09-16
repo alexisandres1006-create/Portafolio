@@ -16,16 +16,16 @@ const createScene = () => {
     scene.collisionsEnabled = true;
 
     // Cámara primera persona
-    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(2, 8, 0), scene);
+    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 7, 0), scene);
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
     camera.applyGravity = true;
     camera.speed = 0.2;
-    camera.ellipsoid = new BABYLON.Vector3(1, 8, 3);
-    camera.ellipsoidOffset = new BABYLON.Vector3(0, 8, 0);
+    camera.ellipsoid = new BABYLON.Vector3(3, 7, 3);
+    camera.ellipsoidOffset = new BABYLON.Vector3(0, 7, 0);
     camera.position.y = 8;
     camera.inputs.addTouch();
-camera.inputs.attached.touch.touchMoveSensibility = 800;
+camera.inputs.attached.touch.touchMoveSensibility = 400;
 
 ///////////////////////////////////////////// IMPORTANTE tiene que ver con el joystick del movil///////////////////////////////////////////
 // Mostrar joystick solo en móviles
@@ -171,9 +171,10 @@ scene.onBeforeRenderObservable.add(() => {
     };
 
     // Cargar modelo
-    BABYLON.SceneLoader.Append("models/", "galeria-v2.glb", scene, function () {
-        console.log("✅ Modelo cargado: galeria.glb-v2");
+     BABYLON.SceneLoader.Append("models/", "galeria.glb", scene, function () {
+        console.log("✅ Modelo cargado: galeria.glb");
 
+        // Colisiones en todos los meshes
         scene.meshes.forEach(mesh => {
             mesh.checkCollisions = true;
             mesh.isPickable = true;
@@ -255,7 +256,7 @@ setTimeout(() => {
   loader.style.display = "none";
 }, 500);
 
-loader.load("funko_box.glb", function (gltf) {
+loader.load("galeria.glb", function (gltf) {
   gltf.scene.traverse((child) => {
     if (child.isMesh && child.material) {
       
