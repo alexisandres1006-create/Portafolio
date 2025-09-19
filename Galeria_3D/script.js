@@ -16,13 +16,13 @@ const createScene = () => {
     scene.collisionsEnabled = true;
 
     // Cámara primera persona
-    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 7, 0), scene);
+    const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 6, 0), scene);
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
     camera.applyGravity = true;
     camera.speed = 0.2;
     camera.ellipsoid = new BABYLON.Vector3(3, 7, 3);
-    camera.ellipsoidOffset = new BABYLON.Vector3(0, 7, 0);
+    camera.ellipsoidOffset = new BABYLON.Vector3(0, 6, 0);
     camera.position.y = 8;
     camera.inputs.addTouch();
 camera.inputs.attached.touch.touchMoveSensibility = 400;
@@ -139,7 +139,7 @@ scene.onBeforeRenderObservable.add(() => {
         },
         "Box092": {
             titulo: "Obra: Mandala Creativo",
-            desc: "Proyecto que nos enseño la creatividad y leyes de gestalt, sobre todo paciencia. Empeze Planeando la idea para luego con regla y lapiz delinear todo el dibujo, después lo repase con un estilografo.",
+            desc: "Proyecto que me enseño la creatividad y leyes de gestalt, sobre todo paciencia. Empeze Planeando la idea para luego con regla y lapiz delinear todo el dibujo, después lo repase con un estilografo.",
             img: "imagenes/mandalaa.jpeg"
         },
         "Box098": {
@@ -150,24 +150,54 @@ scene.onBeforeRenderObservable.add(() => {
         },
         "Box099": {
             titulo: "Obra: Cuento harry potter",
-            desc: "Planeamos la tematica y empeze con varios bocetos, luego usando pinceles, filtros, capas fui pintando en una tableta digital. Este proyecto me enseño mucho acerca de la ilustración digital en piezas graficas y la creatividad.",
+            desc: "Planifique la tematica y empeze con varios bocetos, luego usando pinceles, filtros, capas fui pintando en una tableta digital. Este proyecto me enseño mucho acerca de la ilustración digital en piezas graficas y la creatividad.",
             img: "imagenes/harry_proces" 
         },
         "Box074": {
             titulo: "Obra: Vitral de paz",
-            desc: "Primero lo que hicimos fue seleccionar una idea, plasmarla con lapiz, hacer el troquelado manualmente con cutter y cortamos pieza por pieza cada color del vitrial y pegamos. Este proyecto me enseño mucho sobre el detalle y la planificación.",
+            desc: "Al inicio lo que hice fue seleccionar una idea, plasmarla con lapiz, hacer el troquelado manualmente con cutter y corte pieza por pieza cada color del vitrial y pegue solidamente. Este proyecto me enseño mucho sobre el detalle y la planificación.",
             img: "imagenes/vitrial.jpg" 
         },
         "Box144": {
             titulo: "Obra: Grises en pintura",
-            desc: "Primero planificamos la imagen, luego dividimos por sectores donde la saturación de iluminación se visualizaba, dividio por 9 tonos de grises y lo pintamos con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
+            desc: "Primero planifique la imagen, luego dividi por sectores donde la saturación de iluminación se visualizaba, dividi por 9 tonos de grises y lo pinte con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
             img: "imagenes/grises.jpg" 
-        },
+        }, 
         "Box077": {
-            titulo: "Obra: Grises en pintura",
-            desc: "Primero planificamos la imagen, luego dividimos por sectores donde la saturación de iluminación se visualizaba, dividio por 9 tonos de grises y lo pintamos con pinturas acrilicas que le daban un toque mate. Este proyecto me enseño sobre identificar la saturación e iluminación en una imagen",
-            img: "imagenes/grises.jpg" 
-        }
+            titulo: "Obra: Poster de Dark ",
+            desc: "Esta serie me encanta y decidi rendirle honor haciendo un poster. Primero hice mi maqueta basandome en la idea que tenia luego en photoshop usando filtros y efectos, tales como desenfoque de movimiento, efecto de semitono y jugando con valores como saturacion/tono le di ese toque misterioso",
+            img: "imagenes/maqueta.png" 
+        }, 
+        "Box075": {
+            titulo: "Obra: Sensación de verano",
+            desc: "Pintura que realice usando pinturas al óleo, basandome de un dibujo propio, primero yo buscaba darle toques impresionistas, que se note cada pincelada y tono para que contraste y destaque. Esto me enseño a no rendirme y ser más creativo",
+            img: "imagenes/boceto_1.jpg" 
+        },  
+          "Box249": {
+            titulo: "Obra: Corazón de escritor",
+            desc: "Retrate el sentimiento de una persona que es sensible, todo pintado al óleo. Queria agregar elementos como tipografia caligrafica, un corazón semi real y la luz del sol radiando, que simbolizan que una persona asi siempre brilla.",
+            img: "imagenes/process_1.jpg"
+          },
+          "Box131": {
+            titulo: "Obra: Expresión de caridad",
+            desc: "Use como referencia una figura religiosa, me base en los vitrales de las capillas pra el fondo y su estetica, todo pintando en un lienzo A2 con pinturas al óleo, dando matizes de tono en la piel y en el vitral.",
+            img: "imagenes/process_3.jpg"
+          },
+           "Box078": {
+            titulo: "Obra: Venganza Roja",
+            desc: "Mi idea se basaba en una historia alternativa sobre el cuento de la caperucita roja para volverla a una categoria de venganza, miedo o suspenso, realize mi maqueta y en photoshop usando filtros, efectos y capas logre el efecto de poster de pelicula",
+            img: "imagenes/maqueta_2.png"
+          },
+           "Box132": {
+            titulo: "Obra: Pop art",
+            desc: "Realice la etiqueta con el movimiento artistico del Pop art, para un efecto de vintage. Se usaron colores fosforecentes, semitono, manchas y tipografia extravagante",
+            img: "imagenes/gaseosa.png"
+          },
+           "Box244": {
+            titulo: "Obra: Foquita en petalos de cerezo",
+            desc: "Realice la etiqueta con el movimiento artistico del Pop art, para un efecto de vintage. Se usaron colores fosforecentes, semitono, manchas y tipografia extravagante",
+            img: "imagenes/foquita.jpg"
+          }
     };
 
     // Cargar modelo
