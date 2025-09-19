@@ -182,5 +182,35 @@ footer a {
   }
 
 }
+/* logoooooo animado, se usa fotogramas en codigo segun puntos cardinales*/
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px); /* Comienza fuera a la derecha */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Termina en su lugar */
+  }
+}
 
-/* tiene q ver con q se escriba como maquina de escribir*/ 
+.logo {
+  animation: slideInRight 1s ease-out forwards;
+}
+
+/*Animacion de texto (intento)*/
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* empieza invisible y abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* termina visible y en su lugar */
+  }
+}
+
+.secciones-rapidas {
+  opacity: 0; /* invisible al inicio */
+  animation: fadeInUp 1.5s ease-out forwards; }
