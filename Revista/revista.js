@@ -141,38 +141,41 @@ window.addEventListener("resize", () => engine.resize());
 
 
 
-
 let animGroup = null;
 let currentPage = 0;
 let pageRanges = [];
 
-// Funciones reutilizables
+const btnNext = document.getElementById("btnNext");
+const btnPrev = document.getElementById("btnPrev");
+const btnStop = document.getElementById("btnStop");
 
-function nextPage() {
+// NEXT (avanzar página)
+btnNext.addEventListener("pointerdown", () => {
   if (!animGroup || pageRanges.length === 0) return;
- if (currentPage < pageRanges.length - 1) {
-            currentPage++;
-            const range = pageRanges[currentPage];
-            animGroup.start(false, 1.0, range.from, range.to);
-          
+  if (currentPage < pageRanges.length - 1) {
+    currentPage++;
+    const range = pageRanges[currentPage];
+    animGroup.start(false, 1.0, range.from, range.to);
   }
-}
+});
 
-
-function prevPage() {
+// PREV (retroceder página)
+btnPrev.addEventListener("pointerdown", () => {
   if (!animGroup || pageRanges.length === 0) return;
   if (currentPage > 0) {
     const prevPage = currentPage - 1;
-    const range = pageRanges[currentPage];
+    const range = pageRanges[currentPage]; // rango actual
+    
     animGroup.stop();
     animGroup.goToFrame(range.from);
     animGroup.play(false);
-    animGroup.speedRatio = -1;
+    animGroup.speedRatio = -1; // retrocede
     currentPage = prevPage;
   }
-}
+});
 
-function stopPage() {
+// STOP (pausar)
+btnStop.addEventListener("pointerdown", () => {
   if (!animGroup) return;
   animGroup.pause();
-}
+});
