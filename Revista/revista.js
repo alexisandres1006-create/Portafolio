@@ -41,7 +41,7 @@ const createScene = function () {
   let animGroup = null;
 
   // Cargar modelo GLB
-  BABYLON.SceneLoader.Append("model/", "revista.glb", scene, function (scene) {
+  BABYLON.SceneLoader.Append("model/", "Revista.glb", scene, function (scene) {
     console.log("cargada con éxito 🚀");
     
 
