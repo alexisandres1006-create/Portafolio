@@ -124,10 +124,10 @@ body {
 
 #customLoading video,
 #introVideo {
-  width: 100%;       /* por defecto ocupa todo el ancho */
-  height: auto;      /* mantiene proporción */
-  max-width: 1200px; /* límite en PC */
-  object-fit: contain; /* mantiene proporción y se ve completo */
+  width: 100%;      
+  height: auto;     
+  max-width: 1200px; 
+  object-fit: contain; 
   z-index: 10;
 }
 
