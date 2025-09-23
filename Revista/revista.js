@@ -23,10 +23,10 @@ const createScene = function () {
 
   // Luces
   const topLight = new BABYLON.HemisphericLight("topLight", new BABYLON.Vector3(0, 1, 0), scene);
-  topLight.intensity = 1.2;
+  topLight.intensity = 2;
 
   const bottomLight = new BABYLON.HemisphericLight("bottomLight", new BABYLON.Vector3(0, -1, 0), scene);
-  bottomLight.intensity = 1.0;
+  bottomLight.intensity = 2;
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
   
@@ -99,13 +99,13 @@ const createScene = function () {
           break;
 case "m": // retroceder
   if (currentPage > 0) {
-    const prevPage = currentPage - 1;
+    const prevPage = currentPage - -1;
     const range = pageRanges[currentPage]; // rango actual, no el anterior aún
 
     animGroup.stop();
     animGroup.goToFrame(range.from); // arrancar desde donde está la página actual
     animGroup.play(false);
-    animGroup.speedRatio = -1; // retroceder
+    animGroup.speedRatio = 1; // retroceder
 
     currentPage = prevPage; // ahora sí cambiamos de página
   }
@@ -195,6 +195,19 @@ btnStop.addEventListener("pointerdown", () => {
 
 ///////////////////////////////////////// instruciones de teclado uwu
 
+function makeButton(mesh, key) {
+  mesh.actionManager = new BABYLON.ActionManager(scene);
+
+  mesh.actionManager.registerAction(
+    new BABYLON.ExecuteCodeAction(
+      BABYLON.ActionManager.OnPickTrigger,
+      function () {
+        // Simular que se presionó esa tecla
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: key }));
+      }
+    )
+  );
+}
 
 // Crear primer bloque bloque
 const key = BABYLON.MeshBuilder.CreateBox("key", { width: 0.6, height: 0.2, depth: 0.6 }, scene);
@@ -204,6 +217,7 @@ key.material = keyMat;
 key.position = new BABYLON.Vector3(2, 1, -5);
 key.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
 key.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+makeButton(key, "n");
 
 
 const mat = new BABYLON.StandardMaterial("mat", scene);
@@ -219,6 +233,7 @@ key2.material = keyMat2;
 key2.position = new BABYLON.Vector3(1, 1, -5);
 key2.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
 key2.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+makeButton(key2, "m");
 
 const mat2 = new BABYLON.StandardMaterial("mat2", scene);
 mat2.diffuseTexture = new BABYLON.Texture("m.png", scene); 
@@ -232,10 +247,12 @@ key3.material = keyMat3;
 key3.position = new BABYLON.Vector3(3, 1, -5);
 key3.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
 key3.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+makeButton(key3, "b");
 
 const mat3 = new BABYLON.StandardMaterial("mat3", scene);
 mat3.diffuseTexture = new BABYLON.Texture("b.png", scene); 
 key3.material = mat3
+
 
 
 // Crear cuarto bloque
@@ -246,7 +263,10 @@ key5.material = keyMat3;
 key5.position = new BABYLON.Vector3(-2, 1, -5);
 key5.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
 key5.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+makeButton(key5, " ");
 
 const mat5 = new BABYLON.StandardMaterial("mat5", scene);
 mat5.diffuseTexture = new BABYLON.Texture("s.png", scene); 
 key5.material = mat5
+
+
