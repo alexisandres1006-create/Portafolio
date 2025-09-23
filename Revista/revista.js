@@ -30,11 +30,7 @@ const createScene = function () {
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
   
-    // HDRI
-    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
-        "../galeria_3D/textures/venice_sunset.env",
-        scene
-    );
+
   
 
   // Variable para animaciones
@@ -114,6 +110,20 @@ case "m": // retroceder
     currentPage = prevPage; // ahora sí cambiamos de página
   }
   break;
+  case "b": // vovlera l incio
+  if (currentPage > 0) {
+    const prevPage = currentPage - 0;
+    const range = pageRanges[currentPage]; // rango actual, no el anterior aún
+
+    animGroup.stop();
+    animGroup.goToFrame(range.from); // arrancar desde donde está la página actual
+    animGroup.play(false);
+    animGroup.speedRatio = -8; // retroceder
+
+    currentPage = prevPage; // ahora sí cambiamos de página
+  }
+    
+  break;
        
         case "e":
         case " ": // Pausar/reanudar
@@ -128,7 +138,8 @@ case "m": // retroceder
   });
 
   return scene;
-};
+}
+
 
 
 // Crear la escena y render loop
@@ -179,3 +190,63 @@ btnStop.addEventListener("pointerdown", () => {
   if (!animGroup) return;
   animGroup.pause();
 });
+
+
+
+///////////////////////////////////////// instruciones de teclado uwu
+
+
+// Crear primer bloque bloque
+const key = BABYLON.MeshBuilder.CreateBox("key", { width: 0.6, height: 0.2, depth: 0.6 }, scene);
+const keyMat = new BABYLON.StandardMaterial("keyMat", scene);
+keyMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+key.material = keyMat;
+key.position = new BABYLON.Vector3(2, 1, -5);
+key.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+key.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+
+
+const mat = new BABYLON.StandardMaterial("mat", scene);
+mat.diffuseTexture = new BABYLON.Texture("n.png", scene); 
+key.material = mat
+
+
+// Crear segundo bloque
+const key2 = BABYLON.MeshBuilder.CreateBox("key2", { width: 0.6, height: 0.2, depth: 0.6 }, scene);
+const keyMat2 = new BABYLON.StandardMaterial("keyMat2", scene);
+keyMat2.diffuseColor = new BABYLON.Color3(1, 1, 1);
+key2.material = keyMat2;
+key2.position = new BABYLON.Vector3(1, 1, -5);
+key2.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+key2.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+
+const mat2 = new BABYLON.StandardMaterial("mat2", scene);
+mat2.diffuseTexture = new BABYLON.Texture("m.png", scene); 
+key2.material = mat2
+
+// Crear tercer bloque
+const key3 = BABYLON.MeshBuilder.CreateBox("key3", { width: 0.6, height: 0.2, depth: 0.6 }, scene);
+const keyMat3 = new BABYLON.StandardMaterial("keyMat3", scene);
+keyMat3.diffuseColor = new BABYLON.Color3(1, 1, 1);
+key3.material = keyMat3;
+key3.position = new BABYLON.Vector3(3, 1, -5);
+key3.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+key3.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+
+const mat3 = new BABYLON.StandardMaterial("mat3", scene);
+mat3.diffuseTexture = new BABYLON.Texture("b.png", scene); 
+key3.material = mat3
+
+
+// Crear cuarto bloque
+const key5 = BABYLON.MeshBuilder.CreateBox("key5", { width: 4, height: 0.2, depth: 0.6 }, scene);
+const keyMat5 = new BABYLON.StandardMaterial("keyMat5", scene);
+keyMat5.diffuseColor = new BABYLON.Color3(1, 1, 1);
+key5.material = keyMat3;
+key5.position = new BABYLON.Vector3(-2, 1, -5);
+key5.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+key5.scaling = new BABYLON.Vector3(1.2, 0.3, 1.2);
+
+const mat5 = new BABYLON.StandardMaterial("mat5", scene);
+mat5.diffuseTexture = new BABYLON.Texture("s.png", scene); 
+key5.material = mat5
