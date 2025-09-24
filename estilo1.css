@@ -1,0 +1,45 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Tu imagen de fondo */
+body {
+  background: url("404.png") no-repeat center center;
+  background-size: cover; /* hace que la imagen cubra toda la pantalla */
+}
+
+/* usando @media puedo adaptar todo a movil, usando el max y width, el background es para saber q tipo de imagen selecionar de fondo*/
+@media (max-width: 768px) {
+  body {
+    background: url("404cel.png") no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.boton_Volver {
+  position: absolute;
+  top: 80%;
+  right: 50%;
+   background: #007bff;
+  color: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  transition: 0.3s;
+
+  
+}
+
+@media (max-width: 768px) {
+  .boton_Volver {
+    position: absolute;
+    top: 60%;
+    right: 30%;
+    font-size: 1rem;  /* un poco más chico */
+    padding: 0.8em 1.5em;
+  }
+}
